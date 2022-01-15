@@ -29,10 +29,16 @@ public class BookController {
     }
 
     @RequestMapping("/allBooks")
-    public String showAllBooks(Model model)
+    public String showAllBooks(String name, Model model)
     {
-        var allBooks = bookService.getAllBooks();
-        model.addAttribute("books", allBooks);
+        if(name == null) {
+            var allBooks = bookService.getAllBooks();
+            model.addAttribute("books", allBooks);
+        }
+        else{
+            var filteredBooks = bookService.filterNameBook(name);
+            model.addAttribute("books", filteredBooks);
+        }
         return "allBooks";
     }
 

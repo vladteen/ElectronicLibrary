@@ -22,11 +22,21 @@ public class BookService {
         var book = bookList.get(index);
         return book;
     }
+    public ArrayList<Book> filterNameBook(String name){
+        var books = new ArrayList<Book>();
+        for(int i = 0; i < bookList.size(); i++){
+            var currentBook = bookList.get(i);
+            if(currentBook.getName().contains(name)){
+                books.add(currentBook);
+            }
+        }
+        return books;
+    }
 
     private int getIndex(int id){
         for(int i = 0; i < bookList.size(); i++){
             var currentBook = bookList.get(i);
-            if(currentBook.getId() == id) {
+            if(currentBook.getId() == id){
                 return i;
             }
         }

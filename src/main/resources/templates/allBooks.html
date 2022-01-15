@@ -10,6 +10,11 @@
     <table class="table table-dark">
         <h3>Онлайн Библиотека</h3>
         <thead>
+        <form method="post" action="/allBooks">
+            <input  type="text" placeholder="Фильтр" name="name"/>
+            <button type="submit" class="btn btn-success">Применить</button>
+        </form>
+            <br>
             <th>Название</th>
             <th>Автор</th>
             <th>Год издания</th>
