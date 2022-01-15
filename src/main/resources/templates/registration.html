@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация новой книги</title>
+    <link rel="stylesheet"  type="text/css" href="resources/registration.css">
+</head>
+<body>
+    <form action="/addNewBook" method="post" th:object="${newBook}">
+        <label>Название</label>
+        <input type="text" th:field="*{name}"/>
+        <br>
+        <label>Автор</label>
+        <input type="text" th:field="*{author}"/>
+        <br>
+        <label>Год издания</label>
+        <input type="text" th:field="*{yearOfIssue}"/>
+        <br>
+        <label>Издательство</label>
+        <input type="text" th:field="*{publisher}"/>
+        <br>
+        <label>Книга выдана</label>
+        <input type="checkbox" th:field="*{inStock}"/>
+        <br>
+        <label>Кому выдана</label>
+        <input type="text" th:field="*{hasABook}"/>
+        <br>
+        <button>Добавить книгу</button>
+    </form>
+</body>
+</html>

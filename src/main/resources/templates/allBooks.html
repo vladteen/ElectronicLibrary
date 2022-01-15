@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Все книги</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="resources/allBooks.css">
+</head>
+<body>
+    <table class="table table-dark">
+        <h3>Онлайн Библиотека</h3>
+        <thead>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Год издания</th>
+            <th>Издательство</th>
+            <th>Книга выдана</th>
+            <th>Кому выдана</th>
+            <th>ID</th>
+            <th>Редактировать</th>
+            <th>Удалить</th>
+        </thead>
+        <tr  th:if="${#lists.isEmpty(books)}">
+            <td class="table-active" colspan="9">В базе книг нет</td>
+        </tr>
+        <tr th:each="book : ${books}" th:object="${book}">
+            <td th:text="*{name}" />
+            <td th:text="*{author}" />
+            <td th:text="*{yearOfIssue}" />
+            <td th:text="*{publisher}" />
+            <td><input type="checkbox" disabled="true" th:checked="*{inStock}"/></td>
+            <td th:text="*{hasABook}" />
+            <td th:text="*{id}"/>
+            <td><a th:href="'/editBook/' + *{id}">Редактировать</a></td>
+            <td>
+            <form th:action="'/deleteBook/' + *{id}" method="post">
+                <button type="submit">Удалить</button>
+            </form>
+            </td>
+        </tr>
+    </table>
+    <a href="/registration">Добавить новую книгу</a>
+</body>
+</html>

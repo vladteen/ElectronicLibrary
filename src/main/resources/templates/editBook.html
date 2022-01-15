@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование книги</title>
+</head>
+<body>
+    <form th:action="'/editBook/' + ${book.id}" method="post">
+        <label>Название</label>
+        <input type="text" th:field="${book.name}"/>
+        <br>
+        <label>Автор</label>
+        <input type="text" th:field="${book.author}"/>
+        <br>
+        <label>Год издания</label>
+        <input type="text" th:field="${book.yearOfIssue}"/>
+        <br>
+        <label>Издательство</label>
+        <input type="text" th:field="${book.publisher}"/>
+        <br>
+        <label>Книга выдана</label>
+        <input type="checkbox" th:field="${book.inStock}"/>
+        <br>
+        <label>Кому выдана</label>
+        <input type="text" th:field="${book.hasABook}"/>
+        <br>
+        <button>Редактировать книгу</button>
+    </form>
+</body>
+</html>
