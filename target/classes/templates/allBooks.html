@@ -32,7 +32,7 @@
         <tr th:each="book : ${books}" th:object="${book}">
             <td th:text="*{name}" />
             <td th:text="*{author}" />
-            <td th:text="*{yearOfIssue}" />
+            <td><input type="date" disabled="true" th:value="*{{yearOfIssue}}"></td>
             <td th:text="*{publisher}" />
             <td><input type="checkbox" disabled="true" th:checked="*{inStock}"/></td>
             <td th:text="*{hasABook}" />

@@ -1,5 +1,8 @@
 package com.example.libraryhw.Models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Date;
+
 public class Book {
 
     public String getName() {
@@ -18,11 +21,11 @@ public class Book {
         this.author = author;
     }
 
-    public String getYearOfIssue() {
+    public Date getYearOfIssue() {
         return yearOfIssue;
     }
 
-    public void setYearOfIssue(String yearOfIssue) {
+    public void setYearOfIssue(Date yearOfIssue) {
         this.yearOfIssue = yearOfIssue;
     }
 
@@ -60,7 +63,8 @@ public class Book {
 
     private String name;
     private String author;
-    private String yearOfIssue;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date yearOfIssue;
     private String publisher;
     private boolean inStock;
     private String hasABook;
