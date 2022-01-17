@@ -38,6 +38,7 @@ public class BookController {
         else{
             var filteredBooks = bookService.filterNameBook(name);
             model.addAttribute("books", filteredBooks);
+            model.addAttribute("nameValue", name);
         }
         return "allBooks";
     }

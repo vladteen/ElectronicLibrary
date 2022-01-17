@@ -11,8 +11,9 @@
         <h3>Онлайн Библиотека</h3>
         <thead>
         <form method="post" action="/allBooks">
-            <input  type="text" placeholder="Фильтр" name="name"/>
-            <button type="submit" class="btn btn-success">Применить</button>
+            <input  type="text" placeholder="Фильтр" name="name" id="filterByNameValue" th:value="${nameValue}"/>
+            <button type="submit" id="applyFilterButton" class="btn btn-success">Применить</button>
+            <button type="button" class="btn btn-danger" onclick="var filterByNameValue = document.getElementById('filterByNameValue'); filterByNameValue.value = ''; var applyFilterButton = document.getElementById('applyFilterButton'); applyFilterButton.click();">Сбросить</button>
         </form>
             <br>
             <th>Название</th>
@@ -38,9 +39,9 @@
             <td th:text="*{id}"/>
             <td><a th:href="'/editBook/' + *{id}">Редактировать</a></td>
             <td>
-            <form th:action="'/deleteBook/' + *{id}" method="post">
-                <button type="submit">Удалить</button>
-            </form>
+                <form>
+                <button type="submit" th:formaction="'/deleteBook/' + *{id}" formmethod="post">Удалить</button>
+                </form>
             </td>
         </tr>
     </table>
