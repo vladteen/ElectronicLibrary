@@ -7,14 +7,13 @@
     <link rel="stylesheet"  type="text/css" href="resources/allBooks.css">
 </head>
 <body>
+    <form method="post" action="/allBooks">
     <table class="table table-dark">
         <h3>Онлайн Библиотека</h3>
         <thead>
-        <form method="post" action="/allBooks">
             <input  type="text" placeholder="Фильтр" name="name" id="filterByNameValue" th:value="${nameValue}"/>
             <button type="submit" id="applyFilterButton" class="btn btn-success">Применить</button>
             <button type="button" class="btn btn-danger" onclick="var filterByNameValue = document.getElementById('filterByNameValue'); filterByNameValue.value = ''; var applyFilterButton = document.getElementById('applyFilterButton'); applyFilterButton.click();">Сбросить</button>
-        </form>
             <br>
             <th>Название</th>
             <th>Автор</th>
@@ -39,12 +38,14 @@
             <td th:text="*{id}"/>
             <td><a th:href="'/editBook/' + *{id}">Редактировать</a></td>
             <td>
-                <form>
                 <button type="submit" th:formaction="'/deleteBook/' + *{id}" formmethod="post">Удалить</button>
-                </form>
             </td>
         </tr>
     </table>
+        <div th:each="pageNumber : ${ #numbers.sequence(1, countPages) }" >
+            <button name="pageNumber" formmethod="get" th:value="${pageNumber}" th:text="${pageNumber} + 'стр.'"></button>
+        </div>
+    </form>
     <a href="/registration">Добавить новую книгу</a>
 </body>
 </html>

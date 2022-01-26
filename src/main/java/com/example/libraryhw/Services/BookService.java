@@ -32,9 +32,9 @@ public class BookService {
         }
         return books;
     }
-    public ArrayList<Book> getBooksInPage(int pageNumber, int recordCountOnPage){
+    public ArrayList<Book> getBooksInPage(int pageNumber, int recordCountOnPage, ArrayList<Book> books){
         var shift = (pageNumber - 1) * recordCountOnPage;
-        var arrayLength = bookList.size() - shift;
+        var arrayLength = books.size() - shift;
         if (arrayLength >= recordCountOnPage){
             arrayLength = recordCountOnPage;
         }
@@ -43,14 +43,14 @@ public class BookService {
             resultArray.add(null);
         }
         for (int i = 0 + shift; i < resultArray.size() + shift; i++) {
-            resultArray.set(i - shift, bookList.get(i));
+            resultArray.set(i - shift, books.get(i));
         }
         return resultArray;
     }
 
-    public int getPageNumber(int recordCountOnPage){
-        var x = bookList.size()/recordCountOnPage;
-        if(bookList.size()%recordCountOnPage > 0 || bookList.isEmpty())
+    public int getPageNumber(int recordCountOnPage, ArrayList<Book> books){
+        var x = books.size()/recordCountOnPage;
+        if(books.size()%recordCountOnPage > 0 || books.isEmpty())
             x++;
         return x;
     }

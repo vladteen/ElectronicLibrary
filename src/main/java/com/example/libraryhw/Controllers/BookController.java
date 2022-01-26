@@ -39,16 +39,19 @@ public class BookController {
             pageNumberInt = 1;
 
         if(name == null || name == "") {
-            var allBooks = bookService.getBooksInPage(pageNumberInt, recordCountOnPage);
-//            var allBooks = bookService.getAllBooks();
-            var countPages = bookService.getPageNumber(recordCountOnPage);
-            model.addAttribute("books", allBooks);
+            var allBooks = bookService.getAllBooks();
+            var booksInPage = bookService.getBooksInPage(pageNumberInt, recordCountOnPage, allBooks);
+            model.addAttribute("books", booksInPage);
+            var countPages = bookService.getPageNumber(recordCountOnPage, allBooks);
             model.addAttribute("countPages", countPages);
         }
         else{
             var filteredBooks = bookService.filterNameBook(name);
-            model.addAttribute("books", filteredBooks);
+            var booksInPage = bookService.getBooksInPage(pageNumberInt, recordCountOnPage, filteredBooks);
+            model.addAttribute("books", booksInPage);
             model.addAttribute("nameValue", name);
+            var countPages = bookService.getPageNumber(recordCountOnPage, filteredBooks);
+            model.addAttribute("countPages", countPages);
         }
         return "allBooks";
     }
