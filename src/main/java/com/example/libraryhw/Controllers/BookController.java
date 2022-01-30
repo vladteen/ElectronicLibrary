@@ -5,6 +5,8 @@ import com.example.libraryhw.Services.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class BookController {
@@ -22,8 +24,11 @@ public class BookController {
     }
 
     @RequestMapping("/addNewBook")
-    public String addNewBook(Book bookToAdd)
+    public String addNewBook(@Valid @ModelAttribute("newBook") Book bookToAdd, BindingResult bindingResult)
     {
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
         bookService.addBook(bookToAdd);
         return "redirect:/allBooks";
     }

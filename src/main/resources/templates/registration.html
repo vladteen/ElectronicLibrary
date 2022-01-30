@@ -9,21 +9,26 @@
     <form action="/addNewBook" method="post" th:object="${newBook}">
         <label>Название</label>
         <input type="text" th:field="*{name}"/>
+        <label style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
         <br>
         <label>Автор</label>
         <input type="text" th:field="*{author}"/>
+        <label style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Name Error</label>
         <br>
         <label>Год издания</label>
         <input type="date" th:field="*{yearOfIssue}"/>
+        <label style="color: red" th:if="${#fields.hasErrors('yearOfIssue')}" th:errors="*{yearOfIssue}">Name Error</label>
         <br>
         <label>Издательство</label>
         <input type="text" th:field="*{publisher}"/>
+        <label style="color: red" th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}">Name Error</label>
         <br>
         <label>Книга выдана</label>
         <input type="checkbox" th:field="*{inStock}"/>
         <br>
         <label>Кому выдана</label>
         <input type="text" th:field="*{hasABook}"/>
+        <label style="color: red" th:if="${#fields.hasErrors('hasABook')}" th:errors="*{hasABook}">Name Error</label>
         <br>
         <button>Добавить книгу</button>
     </form>
